@@ -17,7 +17,16 @@ describe("Calculator", () => {
   myPromise.then((data) =>{
     console.log(data)
   })
-  // console.log(myPromise)
+
+  const video = {
+    play() {
+      return true;
+    },
+  };
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
   it("renders a calculator", () => {
     render(<Home />);
@@ -78,6 +87,11 @@ describe("Calculator", () => {
     expect(data).toBe("Varun")
     })
 
-    
+    it("testing using spy method",() => {
+      const spy = jest.spyOn(video,"play")
+      const isPlaying = video.play();
+      expect(spy).toHaveBeenCalled();
+      expect(isPlaying).toBe(true)
+    }) 
 
 });
